@@ -1,10 +1,10 @@
 # Setup checklist
 
-The order matters: the platform link and PR #3 need to exist before ContextQA can correlate everything.
+The order matters: the platform link and https://github.com/hardip-varu/meridian-storefront/pull/1 need to exist before ContextQA can correlate everything.
 
 ## 1. GitHub
 - Create a new repo (for example meridian-storefront) and push this code.
-- Create PR #3 for the category filter so SHOP-6 has something real to link to. Simplest path: make a branch that adds the category filter (it is already implemented on the home page), open a PR, and reference it. Or open a PR for any small change and reuse its number, then update SHOP-6 with the real URL.
+- Create https://github.com/hardip-varu/meridian-storefront/pull/1 for the category filter so SHOP-6 has something real to link to. Simplest path: make a branch that adds the category filter (it is already implemented on the home page), open a PR, and reference it. Or open a PR for any small change and reuse its number, then update SHOP-6 with the real URL.
 - Optional: open 2 or 3 GitHub Issues as well, so GitHub is a fourth ticket source alongside Jira and Linear. Good candidates: a bug about the order confirmation page, a feature for wishlist. Only do this if you want to test GitHub Issues parsing too.
 
 ## 2. Deploy the platform link
@@ -14,7 +14,7 @@ The order matters: the platform link and PR #3 need to exist before ContextQA ca
 ## 3. Jira
 - Create a project with key SHOP.
 - Import `docs/jira-import.csv`, or create the six tickets by hand from `docs/jira-tickets.md`.
-- Update SHOP-6 with the real PR #3 URL.
+- Update SHOP-6 with the real https://github.com/hardip-varu/meridian-storefront/pull/1 URL.
 
 ## 4. Linear
 - Create the new workspace you plan to connect.

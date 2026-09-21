@@ -56,7 +56,7 @@ Expected cases: none specific. This ticket is intentionally thin.
 
 What this probes: ambiguity handling. Best outcome is the generator flags it as too vague or produces a single reasonable smoke test (checkout page loads). Worst outcome is a pile of confidently invented cases with details not present anywhere. Score qualitatively.
 
-### SHOP-6 (Story with GitHub link) Category filter on catalogue (see PR #3)
+### SHOP-6 (Story with GitHub link) Category filter on catalogue (see https://github.com/hardip-varu/meridian-storefront/pull/1)
 Expected cases:
 - Category Single Origin shows 4 products, Blends 2, Decaf 2, Equipment 2.
 - Result count updates when a category is applied.

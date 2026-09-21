@@ -31,7 +31,7 @@ Acceptance criteria:
 - Incorrect password returns 401 and shows an error message.
 - Empty email or password shows a client validation message and sends no request.",auth login negative
 Improve the checkout experience,Story,"Checkout could be better. Let us make it smoother for customers. (Intentionally vague, no acceptance criteria.)",checkout
-Category filter on catalogue,Story,"Add category filtering on the home page. Implemented in GitHub PR #3 (replace with the real PR URL).
+Category filter on catalogue,Story,"Add category filtering on the home page. Implemented in GitHub PR https://github.com/hardip-varu/meridian-storefront/pull/1 (replace with the real PR URL).
 
 Acceptance criteria:
 - Single Origin shows 4 products, Blends 2, Decaf 2, Equipment 2.

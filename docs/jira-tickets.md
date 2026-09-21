@@ -86,10 +86,10 @@ Type: Story
 Labels: catalogue, filter
 
 Description:
-Add the ability to filter the catalogue by category on the home page. Implemented in GitHub PR #3 (see the pull request for the exact behaviour and the categories supported).
+Add the ability to filter the catalogue by category on the home page. Implemented in GitHub PR https://github.com/hardip-varu/meridian-storefront/pull/1 (see the pull request for the exact behaviour and the categories supported).
 
 Acceptance criteria:
 - Selecting Single Origin shows 4 products, Blends shows 2, Decaf shows 2, Equipment shows 2.
 - The visible result count updates to reflect the active category.
 
-Note: replace the PR reference with the real pull request URL once PR #3 exists in your GitHub repo, so ContextQA can correlate the ticket to the code.
+Note: replace the PR reference with the real pull request URL once https://github.com/hardip-varu/meridian-storefront/pull/1 exists in your GitHub repo, so ContextQA can correlate the ticket to the code.
