@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getProduct } from "@/lib/products";
-import { validateOrder, DECLINED_CARD } from "@/lib/mockBackend";
+import { validateOrder, DECLINED_CARD, applyPromo } from "@/lib/mockBackend";
 
 export async function POST(request) {
   let body;
@@ -23,7 +23,7 @@ export async function POST(request) {
     );
   }
 
-  let total = 0;
+  let subtotal = 0;
   for (const item of body.items) {
     const product = getProduct(item.id);
     if (!product) {
@@ -33,12 +33,28 @@ export async function POST(request) {
       );
     }
     const qty = Math.max(1, parseInt(item.qty, 10) || 1);
-    total += product.price * qty;
+    subtotal += product.price * qty;
+  }
+  subtotal = Number(subtotal.toFixed(2));
+
+  let discount = 0;
+  let promoCode = null;
+  if (body.promoCode) {
+    const applied = applyPromo(subtotal, body.promoCode);
+    if (applied.error) {
+      return NextResponse.json(
+        { errors: { promoCode: applied.error } },
+        { status: 400 }
+      );
+    }
+    discount = applied.discount;
+    promoCode = applied.promo.code;
   }
 
+  const total = Number((subtotal - discount).toFixed(2));
   const orderId = `ORD-${Date.now().toString(36).toUpperCase()}`;
   return NextResponse.json(
-    { orderId, total: Number(total.toFixed(2)), status: "confirmed" },
+    { orderId, subtotal, discount, promoCode, total, status: "confirmed" },
     { status: 201 }
   );
 }
