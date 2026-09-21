@@ -6,6 +6,12 @@ export default function HomePage({ searchParams }) {
   const category = searchParams?.category || "";
   const results = getProducts({ search, category });
 
+  // Count how many products sit in each category, so the filter dropdown can
+  // show the size of each option before the shopper commits to it.
+  const allProducts = getProducts();
+  const countFor = (value) =>
+    allProducts.filter((p) => p.category === value).length;
+
   return (
     <>
       <section className="hero" data-testid="hero">
@@ -39,10 +45,10 @@ export default function HomePage({ searchParams }) {
               defaultValue={category}
               data-testid="category-select"
             >
-              <option value="">All categories</option>
+              <option value="">All categories ({allProducts.length})</option>
               {CATEGORIES.map((c) => (
                 <option key={c.value} value={c.value}>
-                  {c.label}
+                  {c.label} ({countFor(c.value)})
                 </option>
               ))}
             </select>
