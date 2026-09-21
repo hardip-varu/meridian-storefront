@@ -11,7 +11,7 @@ info:
 servers:
   - url: http://localhost:3000
     description: Local dev
-  - url: https://REPLACE-WITH-YOUR-DEPLOYMENT.vercel.app
+  - url: https://storefront-qa-testbed.vercel.app
     description: Deployed platform link
 paths:
   /api/products:
