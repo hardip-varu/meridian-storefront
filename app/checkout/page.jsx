@@ -13,13 +13,53 @@ export default function CheckoutPage() {
     email: "",
     address: "",
     card: "",
+    promoCode: "",
   });
+  const [promo, setPromo] = useState(null);
+  const [promoError, setPromoError] = useState(null);
+  const [checkingPromo, setCheckingPromo] = useState(false);
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
+  }
+
+  const discount = promo
+    ? promo.type === "percent"
+      ? Math.min(Number(((subtotal * promo.value) / 100).toFixed(2)), subtotal)
+      : Math.min(promo.value, subtotal)
+    : 0;
+  const payable = Number((subtotal - discount).toFixed(2));
+
+  async function applyPromoCode() {
+    setPromoError(null);
+    setPromo(null);
+    setCheckingPromo(true);
+    try {
+      const res = await fetch("/api/promo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: form.promoCode }),
+      });
+      const data = await res.json();
+      if (res.ok && data.valid) {
+        setPromo(data);
+      } else {
+        setPromoError(data.error || "This promo code is not valid.");
+      }
+    } catch (e) {
+      setPromoError("Could not check the promo code. Please try again.");
+    } finally {
+      setCheckingPromo(false);
+    }
+  }
+
+  function removePromo() {
+    setPromo(null);
+    setPromoError(null);
+    update("promoCode", "");
   }
 
   async function placeOrder() {
@@ -38,6 +78,7 @@ export default function CheckoutPage() {
             address: form.address,
           },
           payment: { card: form.card },
+          promoCode: promo ? promo.code : undefined,
         }),
       });
       const data = await res.json();
@@ -133,10 +174,64 @@ export default function CheckoutPage() {
             <span className="hint">Test card 4000000000000002 is always declined.</span>
           </div>
 
+          <div className="field">
+            <label htmlFor="promoCode">Promo code</label>
+            <div style={{ display: "flex", gap: 8 }}>
+              <input
+                id="promoCode"
+                data-testid="promo-input"
+                placeholder="Enter a promo code"
+                value={form.promoCode}
+                disabled={!!promo}
+                onChange={(e) => update("promoCode", e.target.value)}
+              />
+              {promo ? (
+                <button
+                  className="btn secondary"
+                  data-testid="promo-remove"
+                  onClick={removePromo}
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  className="btn secondary"
+                  data-testid="promo-apply"
+                  disabled={checkingPromo}
+                  onClick={applyPromoCode}
+                >
+                  {checkingPromo ? "Checking..." : "Apply"}
+                </button>
+              )}
+            </div>
+            {promoError && (
+              <span className="error" data-testid="promo-error">
+                {promoError}
+              </span>
+            )}
+            {promo && (
+              <span className="notice ok" data-testid="promo-applied">
+                Promo {promo.code} applied: {promo.label}
+              </span>
+            )}
+          </div>
+
+          <div className="cart-summary" style={{ justifyContent: "space-between" }}>
+            <span className="muted">Subtotal</span>
+            <span data-testid="checkout-subtotal">{formatPrice(subtotal)}</span>
+          </div>
+
+          {discount > 0 && (
+            <div className="cart-summary" style={{ justifyContent: "space-between" }}>
+              <span className="muted">Discount</span>
+              <span data-testid="checkout-discount">-{formatPrice(discount)}</span>
+            </div>
+          )}
+
           <div className="cart-summary" style={{ justifyContent: "space-between" }}>
             <span className="muted">Order total</span>
             <span className="total" data-testid="checkout-total">
-              {formatPrice(subtotal)}
+              {formatPrice(payable)}
             </span>
           </div>
 
