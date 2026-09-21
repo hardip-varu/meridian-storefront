@@ -1,0 +1,307 @@
+openapi: 3.0.3
+info:
+  title: Meridian Coffee Storefront API
+  version: 1.0.0
+  description: >
+    REST API for the Meridian Coffee storefront test fixture. All rules are
+    deterministic so that generated tests can assert exact outcomes.
+    Demo login: demo@example.com / password123.
+    Duplicate signup email: existing@example.com.
+    Declined test card: 4000000000000002.
+servers:
+  - url: http://localhost:3000
+    description: Local dev
+  - url: https://REPLACE-WITH-YOUR-DEPLOYMENT.vercel.app
+    description: Deployed platform link
+paths:
+  /api/products:
+    get:
+      summary: List products
+      description: Returns products, optionally filtered by search term and category.
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Matches product name, origin, or description (case insensitive).
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [single-origin, blends, decaf, equipment]
+      responses:
+        "200":
+          description: A list of products.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  products:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Product"
+  /api/products/{id}:
+    get:
+      summary: Get a single product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Product id (e.g. p1) or slug.
+      responses:
+        "200":
+          description: The product.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/auth/signup:
+    post:
+      summary: Create an account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password]
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                  minLength: 6
+      responses:
+        "201":
+          description: Account created, token returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FieldErrors"
+        "409":
+          description: Email already registered.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/auth/login:
+    post:
+      summary: Log in
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Logged in, token returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: Missing or invalid fields.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/orders:
+    post:
+      summary: Place an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [items, customer, payment]
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    required: [id, qty]
+                    properties:
+                      id:
+                        type: string
+                      qty:
+                        type: integer
+                        minimum: 1
+                customer:
+                  type: object
+                  required: [name, email, address]
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    address:
+                      type: string
+                payment:
+                  type: object
+                  required: [card]
+                  properties:
+                    card:
+                      type: string
+                      description: 16 digit card number.
+      responses:
+        "201":
+          description: Order confirmed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: string
+                  total:
+                    type: number
+                  status:
+                    type: string
+        "400":
+          description: Validation error (empty cart, bad card format, missing fields).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FieldErrors"
+        "402":
+          description: Card declined.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/orders/{id}:
+    get:
+      summary: Get an order (demo stub)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Order record (synthesized, not persisted).
+        "404":
+          description: Order not found.
+  /api/admin/products:
+    post:
+      summary: Create a product (admin)
+      description: Requires an Authorization Bearer token.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, category, price]
+              properties:
+                name:
+                  type: string
+                category:
+                  type: string
+                  enum: [single-origin, blends, decaf, equipment]
+                price:
+                  type: number
+      responses:
+        "201":
+          description: Product created (not persisted).
+        "400":
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FieldErrors"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        category:
+          type: string
+        origin:
+          type: string
+        roast:
+          type: string
+        price:
+          type: number
+        weight:
+          type: string
+        stock:
+          type: integer
+        description:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        email:
+          type: string
+        token:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+    FieldErrors:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: string

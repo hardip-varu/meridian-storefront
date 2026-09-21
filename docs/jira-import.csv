@@ -1,0 +1,38 @@
+Summary,Issue Type,Description,Labels
+Product search and category filter,Story,"Customers need to find products by name or origin and narrow the catalogue by category.
+
+Acceptance criteria:
+- Searching a term shows only products whose name, origin, or description match.
+- A search with no matches shows a clear no results message.
+- Search matching is case insensitive.
+- Selecting a category shows only products in that category.
+- Search and category filters combine.
+- Clear resets to the full catalogue of 10 products.",storefront catalogue search
+Cart subtotal must update when quantity changes,Bug,"Reported: after changing an item quantity in the cart the subtotal appeared stale until reload.
+
+Steps to reproduce:
+1. Add any product to the cart.
+2. Open the cart page.
+3. Change the quantity from 1 to 3.
+
+Expected: line total and cart subtotal recalculate immediately. Setting quantity to 0 removes the item. Cover with a regression test.",cart regression
+Checkout order API contract and validation,Story,"POST /api/orders accepts items, customer details, and a payment card.
+
+Acceptance criteria:
+- Valid request returns 201 with orderId and total equal to sum of price times quantity.
+- Empty items array returns 400 with an items error.
+- Test card 4000000000000002 returns 402 declined.
+- Missing customer name, email, or address returns 400.
+- A card that is not 16 digits returns 400 with a card error.",api checkout orders
+Login error handling,Story,"The login screen must handle invalid input and failed authentication.
+
+Acceptance criteria:
+- Valid credentials demo@example.com / password123 log in and return to the shop.
+- Incorrect password returns 401 and shows an error message.
+- Empty email or password shows a client validation message and sends no request.",auth login negative
+Improve the checkout experience,Story,"Checkout could be better. Let us make it smoother for customers. (Intentionally vague, no acceptance criteria.)",checkout
+Category filter on catalogue,Story,"Add category filtering on the home page. Implemented in GitHub PR #3 (replace with the real PR URL).
+
+Acceptance criteria:
+- Single Origin shows 4 products, Blends 2, Decaf 2, Equipment 2.
+- The visible result count updates to reflect the active category.",catalogue filter

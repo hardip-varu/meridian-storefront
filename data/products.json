@@ -1,0 +1,122 @@
+[
+  {
+    "id": "p1",
+    "name": "Ethiopia Yirgacheffe",
+    "slug": "ethiopia-yirgacheffe",
+    "category": "single-origin",
+    "origin": "Ethiopia",
+    "roast": "light",
+    "price": 18.5,
+    "weight": "250g",
+    "stock": 42,
+    "description": "Bright and floral with notes of jasmine, bergamot, and stone fruit. A washed single origin roasted light to keep its delicate aromatics intact."
+  },
+  {
+    "id": "p2",
+    "name": "Colombia Huila",
+    "slug": "colombia-huila",
+    "category": "single-origin",
+    "origin": "Colombia",
+    "roast": "medium",
+    "price": 16.0,
+    "weight": "250g",
+    "stock": 60,
+    "description": "Balanced and sweet with caramel, red apple, and a smooth cocoa finish. An easy daily drinker."
+  },
+  {
+    "id": "p3",
+    "name": "Sumatra Mandheling",
+    "slug": "sumatra-mandheling",
+    "category": "single-origin",
+    "origin": "Indonesia",
+    "roast": "dark",
+    "price": 17.25,
+    "weight": "250g",
+    "stock": 25,
+    "description": "Full bodied and earthy with dark chocolate, cedar, and a syrupy mouthfeel. Roasted dark for depth."
+  },
+  {
+    "id": "p4",
+    "name": "Meridian House Blend",
+    "slug": "meridian-house-blend",
+    "category": "blends",
+    "origin": "Blend",
+    "roast": "medium",
+    "price": 14.5,
+    "weight": "250g",
+    "stock": 120,
+    "description": "Our signature blend of Central and South American beans. Chocolate, toasted nut, and a clean finish. Great for espresso or filter."
+  },
+  {
+    "id": "p5",
+    "name": "Nightshift Espresso Blend",
+    "slug": "nightshift-espresso-blend",
+    "category": "blends",
+    "origin": "Blend",
+    "roast": "dark",
+    "price": 15.75,
+    "weight": "250g",
+    "stock": 80,
+    "description": "A bold espresso blend built for milk drinks. Dark cocoa, molasses, and a lingering sweetness."
+  },
+  {
+    "id": "p6",
+    "name": "Decaf Brazil Cerrado",
+    "slug": "decaf-brazil-cerrado",
+    "category": "decaf",
+    "origin": "Brazil",
+    "roast": "medium",
+    "price": 16.5,
+    "weight": "250g",
+    "stock": 30,
+    "description": "Swiss Water decaffeinated. Nutty and smooth with milk chocolate and a gentle sweetness. All the flavour, none of the caffeine."
+  },
+  {
+    "id": "p7",
+    "name": "Decaf Espresso Blend",
+    "slug": "decaf-espresso-blend",
+    "category": "decaf",
+    "origin": "Blend",
+    "roast": "dark",
+    "price": 17.0,
+    "weight": "250g",
+    "stock": 18,
+    "description": "A decaffeinated espresso blend with dark chocolate and caramel. Rich crema without the jitters."
+  },
+  {
+    "id": "p8",
+    "name": "Pour Over Dripper",
+    "slug": "pour-over-dripper",
+    "category": "equipment",
+    "origin": "N/A",
+    "roast": "n/a",
+    "price": 24.0,
+    "weight": "N/A",
+    "stock": 15,
+    "description": "Ceramic V60 style pour over dripper. Makes a clean, bright cup. Pairs well with our light roasts."
+  },
+  {
+    "id": "p9",
+    "name": "Precision Coffee Scale",
+    "slug": "precision-coffee-scale",
+    "category": "equipment",
+    "origin": "N/A",
+    "roast": "n/a",
+    "price": 39.0,
+    "weight": "N/A",
+    "stock": 22,
+    "description": "0.1g resolution scale with built in timer. Dial in your brew ratio every time."
+  },
+  {
+    "id": "p10",
+    "name": "Kenya Nyeri AA",
+    "slug": "kenya-nyeri-aa",
+    "category": "single-origin",
+    "origin": "Kenya",
+    "roast": "light",
+    "price": 19.5,
+    "weight": "250g",
+    "stock": 0,
+    "description": "Juicy and complex with blackcurrant, tomato, and a bright citric acidity. A benchmark Kenyan coffee. Currently out of stock."
+  }
+]
