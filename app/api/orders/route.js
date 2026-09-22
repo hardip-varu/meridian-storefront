@@ -18,7 +18,7 @@ export async function POST(request) {
   const card = String(body.payment.card).replace(/\s+/g, "");
   if (card === DECLINED_CARD) {
     return NextResponse.json(
-      { error: "Card declined.", code: "card_declined" },
+      { error: "Card declined.", code: "payment_declined" },
       { status: 402 }
     );
   }
@@ -38,7 +38,7 @@ export async function POST(request) {
 
   const orderId = `ORD-${Date.now().toString(36).toUpperCase()}`;
   return NextResponse.json(
-    { orderId, total: Number(total.toFixed(2)), status: "confirmed" },
+    { orderId, amountDue: Number(total.toFixed(2)), status: "confirmed" },
     { status: 201 }
   );
 }

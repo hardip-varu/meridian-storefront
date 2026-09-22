@@ -46,7 +46,7 @@ export default function CheckoutPage() {
         router.push(
           `/order-confirmation?orderId=${encodeURIComponent(
             data.orderId
-          )}&total=${encodeURIComponent(data.total)}`
+          )}&total=${encodeURIComponent(data.amountDue)}`
         );
         return;
       }
