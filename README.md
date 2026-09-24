@@ -35,6 +35,11 @@ Auth
 - Demo login that always succeeds: `demo@example.com` / `password123`
 - Signup email treated as already registered (409): `existing@example.com`
 - Password minimum length: 6
+- Login email is trimmed and case insensitive, so `Demo@Example.com ` works
+
+Stock and shipping
+- Products with 20 or fewer in stock show an "Only N left" notice on the detail page
+- The cart shows how much more is needed for free shipping, which starts at $40.00
 
 Checkout
 - Card number must be 16 digits
