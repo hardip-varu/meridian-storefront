@@ -39,7 +39,7 @@ export default function ProductPage({ params }) {
               Out of stock
             </span>
           )}
-          {product.stock > 0 && product.stock <= 20 && (
+          {product.stock > 0 && product.stock <= 15 && (
             <p className="hint" data-testid="low-stock">
               Only {product.stock} left, order soon.
             </p>
