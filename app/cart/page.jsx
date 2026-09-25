@@ -74,6 +74,16 @@ export default function CartPage() {
         </tbody>
       </table>
 
+      {subtotal >= 40 ? (
+        <div className="notice ok" data-testid="free-shipping">
+          You qualify for free shipping.
+        </div>
+      ) : (
+        <div className="notice" data-testid="free-shipping">
+          Add {formatPrice(40 - subtotal)} more for free shipping.
+        </div>
+      )}
+
       <div className="cart-summary">
         <span className="muted">Subtotal</span>
         <span className="total" data-testid="cart-subtotal">
