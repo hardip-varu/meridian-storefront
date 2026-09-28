@@ -1,4 +1,5 @@
 import ProductCard from "@/components/ProductCard";
+import Newsletter from "@/components/Newsletter";
 import { getProducts, CATEGORIES } from "@/lib/products";
 
 export default function HomePage({ searchParams }) {
@@ -72,6 +73,8 @@ export default function HomePage({ searchParams }) {
             ))}
           </div>
         )}
+
+        <Newsletter />
       </div>
     </>
   );
