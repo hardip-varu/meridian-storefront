@@ -39,6 +39,11 @@ export default function ProductPage({ params }) {
               Out of stock
             </span>
           )}
+          {product.stock > 0 && product.stock <= 20 && (
+            <p className="hint" data-testid="low-stock">
+              Only {product.stock} left, order soon.
+            </p>
+          )}
           <div style={{ marginTop: 20 }}>
             <AddToCart product={product} showQty />
           </div>
