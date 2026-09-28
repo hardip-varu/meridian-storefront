@@ -9,7 +9,10 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { email, password } = body || {};
+  const { password } = body || {};
+  // Normalise the email so autofill whitespace and capitalisation
+  // (common on mobile keyboards) don't reject valid credentials.
+  const email = String(body?.email || "").trim().toLowerCase();
 
   if (!email || !password) {
     return NextResponse.json(
@@ -29,7 +32,7 @@ export async function POST(request) {
   }
 
   return NextResponse.json(
-    { error: "Invalid email or password." },
+    { error: "Incorrect email or password. Please try again." },
     { status: 401 }
   );
 }
