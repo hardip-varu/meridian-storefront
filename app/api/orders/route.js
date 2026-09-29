@@ -32,7 +32,25 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-    const qty = Math.max(1, parseInt(item.qty, 10) || 1);
+    const qty = Number(item.qty);
+    if (!Number.isInteger(qty) || qty < 1) {
+      return NextResponse.json(
+        { error: `Quantity for ${product.name} must be a whole number of at least 1.` },
+        { status: 400 }
+      );
+    }
+    if (product.stock <= 0) {
+      return NextResponse.json(
+        { error: `${product.name} is out of stock.`, code: "out_of_stock" },
+        { status: 409 }
+      );
+    }
+    if (qty > product.stock) {
+      return NextResponse.json(
+        { error: `Only ${product.stock} of ${product.name} left in stock.`, code: "insufficient_stock" },
+        { status: 409 }
+      );
+    }
     total += product.price * qty;
   }
 
