@@ -221,47 +221,7 @@ paths:
           description: Order record (synthesized, not persisted).
         "404":
           description: Order not found.
-  /api/admin/products:
-    post:
-      summary: Create a product (admin)
-      description: Requires an Authorization Bearer token.
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [name, category, price]
-              properties:
-                name:
-                  type: string
-                category:
-                  type: string
-                  enum: [single-origin, blends, decaf, equipment]
-                price:
-                  type: number
-      responses:
-        "201":
-          description: Product created (not persisted).
-        "400":
-          description: Validation error.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/FieldErrors"
-        "401":
-          description: Authentication required.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
   schemas:
     Product:
       type: object
