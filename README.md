@@ -60,11 +60,10 @@ See `openapi.yaml` for the full contract. Summary:
 | POST | /api/auth/login | Log in (400 / 401) |
 | POST | /api/orders | Place order (400 / 402 / 201) |
 | GET | /api/orders/{id} | Order stub |
-| POST | /api/admin/products | Create product, Bearer token required (401 / 400) |
 
 ## User flows
 
-Browse and search, view product detail, add to cart, update quantity, checkout with validation and payment decline handling, signup, login, logout, and an admin add-product screen gated behind login.
+Browse and search, view product detail, add to cart, update quantity, checkout with validation and payment decline handling, signup, login, and logout.
 
 ## Repo layout
 
@@ -79,4 +78,4 @@ openapi.yaml    API contract for swagger based test generation
 
 ## Notes
 
-Orders and admin created products are not persisted (no database). Endpoints validate and return correct status codes so flows are fully testable; state simply does not survive a reload. This is intentional to keep the deploy dependency free.
+Orders are not persisted (no database). Endpoints validate and return correct status codes so flows are fully testable; state simply does not survive a reload. This is intentional to keep the deploy dependency free.
