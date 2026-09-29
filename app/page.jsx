@@ -10,7 +10,7 @@ export default function HomePage({ searchParams }) {
     <>
       <section className="hero" data-testid="hero">
         <div className="container">
-          <h1>Coffee worth the wait.</h1>
+          <h1>Fresh coffee, roasted to order.</h1>
           <p>
             Small batch single origins and blends, roasted to order and shipped
             within 48 hours.
