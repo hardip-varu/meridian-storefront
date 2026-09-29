@@ -52,6 +52,8 @@ export default function CheckoutPage() {
       }
       if (res.status === 402) {
         setMessage({ type: "error", text: "Your card was declined. Try a different card." });
+      } else if (res.status === 409) {
+        setMessage({ type: "error", text: data.error || "Some items in your cart are no longer available." });
       } else if (res.status === 400) {
         setErrors(data.errors || {});
         setMessage({ type: "error", text: "Please fix the errors below." });
