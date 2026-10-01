@@ -51,7 +51,7 @@ export default function CheckoutPage() {
         return;
       }
       if (res.status === 402) {
-        setMessage({ type: "error", text: "Your card was declined. Try a different card." });
+        setMessage({ type: "error", text: "Card declined by the issuer. Please use another card." });
       } else if (res.status === 400) {
         setErrors(data.errors || {});
         setMessage({ type: "error", text: "Please fix the errors below." });
