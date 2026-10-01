@@ -13,7 +13,7 @@ export default function HomePage({ searchParams }) {
           <h1>Fresh coffee, roasted to order.</h1>
           <p>
             Small batch single origins and blends, roasted to order and shipped
-            within 48 hours.
+            within 24 hours.
           </p>
         </div>
       </section>

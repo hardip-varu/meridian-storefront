@@ -60,6 +60,7 @@ See `openapi.yaml` for the full contract. Summary:
 | POST | /api/auth/login | Log in (400 / 401) |
 | POST | /api/orders | Place order (400 / 402 / 201) |
 | GET | /api/orders/{id} | Order stub |
+| GET | /api/shipping | Shipping rules, or a quote with `subtotal` (400 if invalid) |
 | POST | /api/admin/products | Create product, Bearer token required (401 / 400) |
 
 ## User flows

@@ -130,7 +130,7 @@ export default function CheckoutPage() {
               onChange={(e) => update("card", e.target.value)}
             />
             {errors.card && <span className="error" data-testid="error-card">{errors.card}</span>}
-            <span className="hint">Test card 4000000000000002 is always declined.</span>
+            <span className="hint">Use test card 4000000000000002 to simulate a declined payment.</span>
           </div>
 
           <div className="cart-summary" style={{ justifyContent: "space-between" }}>

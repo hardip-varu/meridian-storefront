@@ -257,6 +257,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /api/shipping:
+    get:
+      summary: Shipping rules and quote
+      description: >
+        Without subtotal, returns the shipping rules. With subtotal, returns
+        the shipping cost: free at 40.00 or more, otherwise a flat 4.95.
+      parameters:
+        - name: subtotal
+          in: query
+          required: false
+          schema:
+            type: number
+            minimum: 0
+      responses:
+        "200":
+          description: Shipping rules, or a quote for the given subtotal.
+        "400":
+          description: Subtotal is not a non-negative number.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FieldErrors"
 components:
   securitySchemes:
     bearerAuth:
