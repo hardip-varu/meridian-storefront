@@ -11,7 +11,7 @@ export default function ShippingPolicyPage() {
         Shipping is free on orders of 40.00 or more. Below that, a flat 4.95 applies.
       </p>
       <p data-testid="shipping-returns">
-        Unopened coffee can be returned within 14 days of delivery.
+        Unopened coffee can be returned within 30 days of delivery.
       </p>
       <a href="/" data-testid="shipping-back-link">Back to shop</a>
     </div>
