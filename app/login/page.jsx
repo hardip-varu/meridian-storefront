@@ -15,7 +15,7 @@ export default function LoginPage() {
   async function submit() {
     setMessage(null);
     if (!form.email || !form.password) {
-      setMessage({ type: "error", text: "Enter both email and password." });
+      setMessage({ type: "error", text: "Email and password are both required." });
       return;
     }
     setSubmitting(true);
