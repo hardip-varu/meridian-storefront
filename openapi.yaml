@@ -142,6 +142,53 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /api/promo:
+    post:
+      summary: Validate a promo code
+      description: >
+        Checks a promo code without placing an order. SAVE10 gives 10 percent off,
+        FLAT5 gives a flat 5.00 off, EXPIRED is always rejected, anything else is
+        invalid. Codes are case insensitive.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code:
+                  type: string
+      responses:
+        "200":
+          description: The code is valid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  code:
+                    type: string
+                  type:
+                    type: string
+                    enum: [percent, fixed]
+                  value:
+                    type: number
+                  label:
+                    type: string
+        "400":
+          description: The code is missing, expired, or invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  error:
+                    type: string
   /api/orders:
     post:
       summary: Place an order
@@ -181,6 +228,9 @@ paths:
                     card:
                       type: string
                       description: 16 digit card number.
+                promoCode:
+                  type: string
+                  description: Optional promo code (SAVE10, FLAT5).
       responses:
         "201":
           description: Order confirmed.
@@ -191,6 +241,13 @@ paths:
                 properties:
                   orderId:
                     type: string
+                  subtotal:
+                    type: number
+                  discount:
+                    type: number
+                  promoCode:
+                    type: string
+                    nullable: true
                   total:
                     type: number
                   status:

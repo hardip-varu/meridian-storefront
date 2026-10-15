@@ -41,6 +41,13 @@ Checkout
 - Declined test card (402): `4000000000000002`
 - Any other 16 digit number is accepted
 
+Promo codes (checkout)
+- `SAVE10` applies 10% off the order subtotal
+- `FLAT5` applies a flat $5.00 off the order subtotal
+- `EXPIRED` is always rejected as an expired code
+- Any other code is rejected as invalid
+- Codes are case insensitive; a discount never takes the total below zero
+
 Catalog
 - `Kenya Nyeri AA` (`p10`) is intentionally out of stock, so its Add to cart is disabled
 
@@ -58,7 +65,8 @@ See `openapi.yaml` for the full contract. Summary:
 | GET | /api/products/{id} | Single product, 404 if missing |
 | POST | /api/auth/signup | Create account (400 / 409) |
 | POST | /api/auth/login | Log in (400 / 401) |
-| POST | /api/orders | Place order (400 / 402 / 201) |
+| POST | /api/promo | Validate a promo code (200 / 400) |
+| POST | /api/orders | Place order, optional `promoCode` (400 / 402 / 201) |
 | GET | /api/orders/{id} | Order stub |
 | POST | /api/admin/products | Create product, Bearer token required (401 / 400) |
 
