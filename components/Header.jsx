@@ -15,9 +15,6 @@ export default function Header() {
         </Link>
         <nav className="nav" data-testid="main-nav">
           <Link href="/">Shop</Link>
-          <Link href="/admin" data-testid="nav-admin">
-            Admin
-          </Link>
           {user ? (
             <>
               <span className="muted" data-testid="nav-user">
