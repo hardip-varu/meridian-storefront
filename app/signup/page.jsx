@@ -85,7 +85,7 @@ export default function SignupPage() {
             {errors.password && (
               <span className="error" data-testid="error-password">{errors.password}</span>
             )}
-            <span className="hint">At least 6 characters.</span>
+            <span className="hint">At least 8 characters.</span>
           </div>
           <button
             className="btn"

@@ -34,7 +34,7 @@ After deploying, update the `servers` URL in `openapi.yaml` to your deployment.
 Auth
 - Demo login that always succeeds: `demo@example.com` / `password123`
 - Signup email treated as already registered (409): `existing@example.com`
-- Password minimum length: 6
+- Password minimum length: 8
 
 Checkout
 - Card number must be 16 digits
