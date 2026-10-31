@@ -82,6 +82,9 @@ export default function CheckoutPage() {
     <div className="container">
       <div className="panel wide" data-testid="checkout-panel">
         <h1>Checkout</h1>
+        <p className="hint" data-testid="secure-checkout">
+          Payments are encrypted and processed securely.
+        </p>
 
         {message && (
           <div className={`notice ${message.type}`} data-testid="checkout-message">
