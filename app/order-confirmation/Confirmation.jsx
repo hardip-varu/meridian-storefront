@@ -15,7 +15,7 @@ export default function Confirmation() {
         <div className="panel">
           <h1>No order found</h1>
           <p className="muted">
-            We could not find an order to confirm. <Link href="/">Return to shop</Link>.
+            This link has no order details. <Link href="/">Continue shopping</Link>.
           </p>
         </div>
       </div>
