@@ -95,10 +95,6 @@ export default function SignupPage() {
           >
             {submitting ? "Creating account..." : "Sign up"}
           </button>
-          <p className="muted">
-            Already have an account?{" "}
-            <Link href="/login" data-testid="link-login">Log in</Link>
-          </p>
           <p className="hint">
             Email existing@example.com is treated as already registered.
           </p>
