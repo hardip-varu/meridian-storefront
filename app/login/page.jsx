@@ -15,7 +15,7 @@ export default function LoginPage() {
   async function submit() {
     setMessage(null);
     if (!form.email || !form.password) {
-      setMessage({ type: "error", text: "Enter both email and password." });
+      setMessage({ type: "error", text: "Please enter your email and password to continue." });
       return;
     }
     setSubmitting(true);
@@ -78,6 +78,9 @@ export default function LoginPage() {
           </button>
           <p className="hint">
             Demo account: demo@example.com / password123
+          </p>
+          <p className="muted">
+            <Link href="/login?reset=1" data-testid="link-forgot-password">Forgot password?</Link>
           </p>
           <p className="muted">
             No account? <Link href="/signup" data-testid="link-signup">Sign up</Link>
