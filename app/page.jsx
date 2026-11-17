@@ -51,7 +51,7 @@ export default function HomePage({ searchParams }) {
             Apply
           </button>
           <a className="btn secondary" href="/" data-testid="clear-filters">
-            Clear
+            Reset filters
           </a>
         </form>
 
@@ -62,7 +62,7 @@ export default function HomePage({ searchParams }) {
 
         {results.length === 0 ? (
           <div className="empty" data-testid="no-results">
-            No products match your search. Try a different term or clear the
+            No products match your search. Try a different term or reset the
             filters.
           </div>
         ) : (
