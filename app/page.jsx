@@ -4,7 +4,10 @@ import { getProducts, CATEGORIES } from "@/lib/products";
 export default function HomePage({ searchParams }) {
   const search = searchParams?.search || "";
   const category = searchParams?.category || "";
+  const sort = searchParams?.sort || "";
   const results = getProducts({ search, category });
+  if (sort === "price-asc") results.sort((a, b) => a.price - b.price);
+  if (sort === "price-desc") results.sort((a, b) => b.price - a.price);
 
   return (
     <>
@@ -47,8 +50,16 @@ export default function HomePage({ searchParams }) {
               ))}
             </select>
           </div>
+          <div className="field">
+            <label htmlFor="sort">Sort by</label>
+            <select id="sort" name="sort" defaultValue={sort} data-testid="sort-select">
+              <option value="">Featured</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+            </select>
+          </div>
           <button className="btn" type="submit" data-testid="apply-filters">
-            Apply
+            Search
           </button>
           <a className="btn secondary" href="/" data-testid="clear-filters">
             Clear

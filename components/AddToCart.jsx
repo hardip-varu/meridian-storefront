@@ -44,7 +44,7 @@ export default function AddToCart({ product, showQty = false }) {
         data-product-id={product.id}
         onClick={handleAdd}
       >
-        {added ? "Added" : "Add to cart"}
+        {added ? "Added" : "Add to bag"}
       </button>
     </div>
   );
