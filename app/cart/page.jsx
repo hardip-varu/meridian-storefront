@@ -66,7 +66,7 @@ export default function CartPage() {
                   data-testid="cart-remove"
                   onClick={() => removeItem(item.id)}
                 >
-                  Remove
+                  Delete
                 </button>
               </td>
             </tr>
