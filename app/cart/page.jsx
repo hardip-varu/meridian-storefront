@@ -84,8 +84,11 @@ export default function CartPage() {
           data-testid="checkout-button"
           onClick={() => router.push("/checkout")}
         >
-          Proceed to checkout
+          Continue to checkout
         </button>
+        <Link href="/" className="btn secondary" data-testid="continue-shopping">
+          Continue shopping
+        </Link>
       </div>
     </div>
   );
