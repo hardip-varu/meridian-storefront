@@ -29,7 +29,7 @@ export default function HomePage({ searchParams }) {
               id="search"
               name="search"
               type="text"
-              placeholder="Search coffee or origin"
+              placeholder="Search by coffee or origin"
               defaultValue={search}
               data-testid="search-input"
             />
@@ -59,7 +59,7 @@ export default function HomePage({ searchParams }) {
             </select>
           </div>
           <button className="btn" type="submit" data-testid="apply-filters">
-            Search
+            Find
           </button>
           <a className="btn secondary" href="/" data-testid="clear-filters">
             Reset filters
