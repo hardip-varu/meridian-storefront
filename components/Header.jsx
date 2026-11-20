@@ -33,7 +33,7 @@ export default function Header() {
             </>
           ) : (
             <Link href="/login" data-testid="nav-login">
-              Log in
+              Sign in
             </Link>
           )}
           <Link href="/cart" className="cart-link" data-testid="nav-cart">
