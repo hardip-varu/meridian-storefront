@@ -62,7 +62,7 @@ export default function HomePage({ searchParams }) {
             Search
           </button>
           <a className="btn secondary" href="/" data-testid="clear-filters">
-            Reset filters
+            Clear filters
           </a>
         </form>
 
