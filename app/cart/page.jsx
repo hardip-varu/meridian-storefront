@@ -20,7 +20,7 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="container">
-        <h1 className="section-title">Your cart</h1>
+        <h1 className="section-title">Shopping cart</h1>
         <div className="empty" data-testid="cart-empty">
           Your cart is empty. <Link href="/">Browse the shop</Link>.
         </div>
@@ -30,7 +30,7 @@ export default function CartPage() {
 
   return (
     <div className="container">
-      <h1 className="section-title">Your cart</h1>
+      <h1 className="section-title">Shopping cart</h1>
       <table className="table" data-testid="cart-table">
         <thead>
           <tr>
