@@ -37,7 +37,7 @@ export default function Header() {
             </Link>
           )}
           <Link href="/cart" className="cart-link" data-testid="nav-cart">
-            Cart
+            Basket
             <span className="cart-count" data-testid="cart-count">
               {count}
             </span>

@@ -84,7 +84,7 @@ export default function CartPage() {
           data-testid="checkout-button"
           onClick={() => router.push("/checkout")}
         >
-          Proceed to checkout
+          Checkout now
         </button>
       </div>
     </div>
